@@ -22,7 +22,9 @@ def gerar_dados():
     # Simulação: custo incorrido varia em relação ao orçamento proporcional à execução física.
     fatores = [1.05,0.98,1.12,0.96,1.08,1.02,0.93,1.10]
     df['Custo realizado'] = (df['Custo orçado']*df['Avanço físico']*pd.Series(fatores)).round(2)
-    df['Receita reconhecida (simulada)'] = (df['Receita contratada']*df['Avanço financeiro']).round(2)
+   df['Receita reconhecida (simulada)'] = (
+    df['Receita contratada'] * df['Avanço financeiro']
+).round(2)
     df['Custo previsto até a etapa'] = df['Custo orçado']*df['Avanço físico']
     df['Desvio de custo (R$)'] = df['Custo realizado']-df['Custo previsto até a etapa']
     df['Desvio de custo (%)'] = df['Desvio de custo (R$)']/df['Custo previsto até a etapa']
